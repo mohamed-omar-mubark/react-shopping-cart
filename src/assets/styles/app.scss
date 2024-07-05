@@ -1,0 +1,13 @@
+// header
+.shopping-cart-btn {
+  position: relative;
+
+  .cart-items-count {
+    position: absolute;
+    padding: 0 6px;
+    top: 3px;
+    left: 50%;
+    border-radius: 2000px;
+
+  }
+}
