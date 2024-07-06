@@ -1,8 +1,10 @@
-import { useState } from "react";
-import Cart from "../components/Cart";
-import Header from "../components/Header";
+import { createContext, useState, useContext } from "react";
 
-const App = () => {
+const CartContext = createContext();
+
+export const useCart = () => useContext(CartContext);
+
+export const CartProvider = ({ children }) => {
   const initialCart = [
     {
       id: 1,
@@ -61,17 +63,16 @@ const App = () => {
   );
 
   return (
-    <div>
-      <Header cartItemsCount={cartItemsCount} />
-      <Cart
-        shoppingCart={shoppingCart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        removeItem={removeItem}
-        resetQuantities={resetQuantities}
-      />
-    </div>
+    <CartContext.Provider
+      value={{
+        shoppingCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeItem,
+        resetQuantities,
+        cartItemsCount,
+      }}>
+      {children}
+    </CartContext.Provider>
   );
 };
-
-export default App;
